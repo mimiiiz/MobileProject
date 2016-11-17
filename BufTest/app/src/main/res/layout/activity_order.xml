@@ -13,13 +13,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pork"
+        android:text="Pork : "
         android:id="@+id/tv_pork"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_countPork"
+        android:layout_toRightOf="@+id/tv_pork"
+        android:layout_marginLeft="20dp"/>
 
     <NumberPicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numPick"
         android:baselineAligned="@+id/tv_pork"
-        android:layout_toRightOf="@+id/tv_pork"/>
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>
