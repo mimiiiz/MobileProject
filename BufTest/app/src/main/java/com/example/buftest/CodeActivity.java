@@ -1,12 +1,15 @@
 package com.example.buftest;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +61,12 @@ public class CodeActivity extends AppCompatActivity {
                     codeLs.add(codeObj.getTableNo() + ": \t\t\t\t" + codeObj.getCode() + "\t\t\t\t" + codeObj.getTimestamp());
                 }
                 listCode.setAdapter(new ArrayAdapter<String>(CodeActivity.this, android.R.layout.simple_list_item_1, codeLs));
+                listCode.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        return showAlertDeleteCode();
+                    }
+                });
             }
 
             @Override
@@ -121,5 +130,31 @@ public class CodeActivity extends AppCompatActivity {
         for (int i = 0; i < 8; i++)
             sb.append(alphaSet.charAt(secRandom.nextInt(alphaSet.length())));
         return sb.toString();
+    }
+
+    protected boolean showAlertDeleteCode(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(CodeActivity.this);
+        alert.setTitle("Delete this code?");
+        alert.setMessage("Do you want to delete this code? \n It make this account cannot available");
+
+        alert.setPositiveButton("มั่นใจ", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which){
+                deleteCode();
+            }
+        });
+
+        alert.setNegativeButton("cancle", new DialogInterface.OnClickListener(){
+            //user click cancle
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.show();
+        return true;
+    }
+
+    protected void deleteCode(){
+        Toast.makeText(CodeActivity.this, "Delete!! ", Toast.LENGTH_SHORT).show();
     }
 }
