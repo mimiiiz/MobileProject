@@ -118,6 +118,7 @@ public class CodeActivity extends AppCompatActivity {
         String keyGen = mDatabase.push().getKey();
         try {
             mDatabase.child("Code").child(keyGen).setValue(newCode);
+            et_tableNo.setText("");
             Toast.makeText(CodeActivity.this, newCode.getCode(), Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(CodeActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
