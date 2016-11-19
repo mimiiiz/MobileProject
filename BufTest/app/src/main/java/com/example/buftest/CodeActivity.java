@@ -34,7 +34,7 @@ public class CodeActivity extends AppCompatActivity {
         listCode = (ListView) findViewById(R.id.lv_listCode);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query mQ = mDatabase.child("TableCode").limitToLast(25);
+        Query mQ = mDatabase.child("Code").limitToLast(25);
         mQ.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -42,7 +42,7 @@ public class CodeActivity extends AppCompatActivity {
                 for (DataSnapshot mSnap : dataSnapshot.getChildren()){
                     Code codeObj = mSnap.getValue(Code.class);
 //                    Log.d(">>>>>", codeObj.getCode());
-                    codeLs.add(codeObj.getCode());
+                    codeLs.add(codeObj.getTableNo() + ": \t\t\t\t"+ codeObj.getCode() +  "\t\t\t\t" + codeObj.getTimestamp());
                 }
                 listCode.setAdapter(new ArrayAdapter<String>(CodeActivity.this, android.R.layout.simple_list_item_1, codeLs));
             }
