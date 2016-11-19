@@ -41,7 +41,8 @@
         android:id="@+id/lv_listCode"
         android:layout_below="@+id/linearCode">
 
-
     </ListView>
+
+
 
 </RelativeLayout>
