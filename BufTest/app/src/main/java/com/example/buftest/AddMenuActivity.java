@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AddMenuActivity extends AppCompatActivity {
 
     protected DatabaseReference mDatabase;
-    protected String menuName, keyGen;
+    protected String menuName;
     protected Spinner spnMax, spnMin;
     protected EditText et_MenuName;
     protected  Button btn_add;
@@ -75,7 +76,7 @@ public class AddMenuActivity extends AppCompatActivity {
                 menuObj.setMax(Integer.parseInt(spnMax.getSelectedItem().toString()));
 
                 mDatabase = FirebaseDatabase.getInstance().getReference();
-                keyGen = mDatabase.push().getKey();
+                String keyGen = mDatabase.push().getKey();
                 mDatabase.child("Menu").child(keyGen).setValue(menuObj);
 
             }
@@ -93,6 +94,7 @@ public class AddMenuActivity extends AppCompatActivity {
                 for (DataSnapshot mSnap : dataSnapshot.getChildren()){
                     Menu newObj = mSnap.getValue(Menu.class);
                     Toast.makeText(AddMenuActivity.this, newObj.getMenuName(), Toast.LENGTH_SHORT).show();
+                    Log.d(">>>>>", newObj.getMenuName());
                 }
             }
 
