@@ -29,8 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_genCustomer"
-        android:text="generate custimer"
-        android:onClick="gotoGenCustomer"/>
+        android:text="code"
+        android:onClick="gotoCode"/>
 
     <Button
         android:layout_width="wrap_content"

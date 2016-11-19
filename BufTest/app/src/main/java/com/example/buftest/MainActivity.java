@@ -1,6 +1,5 @@
 package com.example.buftest;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(gotoQueue);
     }
 
-    protected void gotoGenCustomer(View v){
-        Toast.makeText(this, "go to gen customer", Toast.LENGTH_SHORT).show();
-//        Intent gotoGenCustomer = new Intent(this, GenCustomerActivity.class);
-//        startActivity(gotoGenCustomer);
+    protected void gotoCode(View v){
+        Intent gotoCode = new Intent(this, CodeActivity.class);
+        startActivity(gotoCode);
     }
 
 
