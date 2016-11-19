@@ -9,15 +9,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.buftest.model.Menu;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddMenuActivity extends AppCompatActivity {
 
     protected DatabaseReference mDatabase;
-    protected String menuName;
+    protected String menuName, keyGen;
     protected Spinner spnMax, spnMin;
     protected EditText et_MenuName;
     protected  Button btn_add;
@@ -70,11 +75,33 @@ public class AddMenuActivity extends AppCompatActivity {
                 menuObj.setMax(Integer.parseInt(spnMax.getSelectedItem().toString()));
 
                 mDatabase = FirebaseDatabase.getInstance().getReference();
-                String keyGen = mDatabase.push().getKey();
+                keyGen = mDatabase.push().getKey();
                 mDatabase.child("Menu").child(keyGen).setValue(menuObj);
 
             }
         });
+    }
+
+    public void testRead(View v){
+//        String obj = mDatabase.child("Menu").child(keyGen).child("menuName").toString();
+//        Toast.makeText(this, obj, Toast.LENGTH_SHORT).show();
+
+        Query mQ = mDatabase.child("Menu").limitToLast(25);
+        mQ.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot mSnap : dataSnapshot.getChildren()){
+                    Menu newObj = mSnap.getValue(Menu.class);
+                    Toast.makeText(AddMenuActivity.this, newObj.getMenuName(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 

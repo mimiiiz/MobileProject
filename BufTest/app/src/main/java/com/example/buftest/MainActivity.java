@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(gotoOrder);
     }
 
-    protected void gotoAddMenu(View v){
-        Intent gotoAddMenu = new Intent(this, AddMenuActivity.class);
-        startActivity(gotoAddMenu);
+    protected void gotoMenu(View v){
+        Intent gotoMenu = new Intent(this, MenuActivity.class);
+        startActivity(gotoMenu);
     }
 
     protected void gotoQueue(View v){
