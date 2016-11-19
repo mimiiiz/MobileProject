@@ -40,6 +40,7 @@ public class CodeActivity extends AppCompatActivity {
     protected final String alphaSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     protected SecureRandom secRandom;
     protected Button btn_genCode;
+    protected String keyDelete;
 
 
     @Override
@@ -50,7 +51,7 @@ public class CodeActivity extends AppCompatActivity {
         listCode = (ListView) findViewById(R.id.lv_listCode);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query mQ = mDatabase.child("Code").limitToLast(25);
+        Query mQ = mDatabase.child("Code").orderByChild("timestamp").limitToLast(25);
         mQ.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -58,13 +59,13 @@ public class CodeActivity extends AppCompatActivity {
                 for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
                     Code codeObj = mSnap.getValue(Code.class);
 //                    Log.d(">>>>>", codeObj.getCode());
-                    codeLs.add(codeObj.getTableNo() + ": \t\t\t\t" + codeObj.getCode() + "\t\t\t\t" + codeObj.getTimestamp());
+                    codeLs.add(codeObj.getTableNo() + "\t\t\t\t:" + codeObj.getCode() + ":\t\t\t\t" + codeObj.getTimestamp());
                 }
                 listCode.setAdapter(new ArrayAdapter<String>(CodeActivity.this, android.R.layout.simple_list_item_1, codeLs));
                 listCode.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
-                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        return showAlertDeleteCode();
+                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        return showAlertDeleteCode(position);
                     }
                 });
             }
@@ -132,18 +133,18 @@ public class CodeActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-    protected boolean showAlertDeleteCode(){
+    protected boolean showAlertDeleteCode(final int position){
         AlertDialog.Builder alert = new AlertDialog.Builder(CodeActivity.this);
         alert.setTitle("Delete this code?");
         alert.setMessage("Do you want to delete this code? \n It make this account cannot available");
 
-        alert.setPositiveButton("มั่นใจ", new DialogInterface.OnClickListener(){
+        alert.setPositiveButton("Remove", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which){
-                deleteCode();
+                deleteCode(position);
             }
         });
 
-        alert.setNegativeButton("cancle", new DialogInterface.OnClickListener(){
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
             //user click cancle
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -154,7 +155,31 @@ public class CodeActivity extends AppCompatActivity {
         return true;
     }
 
-    protected void deleteCode(){
-        Toast.makeText(CodeActivity.this, "Delete!! ", Toast.LENGTH_SHORT).show();
+    protected void deleteCode(int position){
+        String[] tables = listCode.getItemAtPosition(position).toString().split(":");
+        mDatabase.child("Code").orderByChild("code").equalTo(tables[1].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    keyDelete = child.getKey();
+//                    Log.d("User key", child.getKey());
+//                    Log.d("User ref", child.getRef().toString());
+//                    Log.d("User val", child.getValue().toString());
+//                    Log.d("--------------------", child.toString());
+                    mDatabase.child("Code").child(keyDelete).removeValue();
+                    Toast.makeText(CodeActivity.this, "Deleted!! ",  Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }
