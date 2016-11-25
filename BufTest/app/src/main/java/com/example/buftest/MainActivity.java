@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void gotoQueue(View v){
-        Toast.makeText(this, "go to queue", Toast.LENGTH_SHORT).show();
-//        Intent gotoQueue = new Intent(this, QueueActivity.class);
-//        startActivity(gotoQueue);
+        Intent gotoQueue = new Intent(this, QueueActivity.class);
+        startActivity(gotoQueue);
     }
 
     protected void gotoCode(View v){

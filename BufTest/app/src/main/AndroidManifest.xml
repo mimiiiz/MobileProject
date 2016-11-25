@@ -19,6 +19,7 @@
         <activity android:name=".AddMenuActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".CodeActivity" />
+        <activity android:name=".QueueActivity"></activity>
     </application>
 
 </manifest>
