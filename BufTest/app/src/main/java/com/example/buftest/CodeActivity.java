@@ -58,16 +58,9 @@ public class CodeActivity extends AppCompatActivity {
                 codeLs = new ArrayList<String>();
                 for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
                     Code codeObj = mSnap.getValue(Code.class);
-//                    Log.d(">>>>>", codeObj.getCode());
                     codeLs.add(codeObj.getTableNo() + "\t\t\t\t:" + codeObj.getCode() + ":\t\t\t\t" + codeObj.getTimestamp());
                 }
                 listCode.setAdapter(new ArrayAdapter<String>(CodeActivity.this, android.R.layout.simple_list_item_1, codeLs));
-                listCode.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        return showAlertDeleteCode(position);
-                    }
-                });
             }
 
             @Override
@@ -76,7 +69,14 @@ public class CodeActivity extends AppCompatActivity {
             }
         });
 
+        listCode.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                return showAlertDeleteCode(position);
+            }
+        });
 
+        //check table no cannot null
         btn_genCode = (Button) findViewById(R.id.btn_genCode);
         et_tableNo = (EditText) findViewById(R.id.et_tableNo);
         et_tableNo.addTextChangedListener(new TextWatcher() {
