@@ -120,13 +120,13 @@ public class CodeActivity extends AppCompatActivity {
             mDatabase.child("Code").child(keyGen).setValue(newCode);
             et_tableNo.setText("");
             Toast.makeText(CodeActivity.this, newCode.getCode(), Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(CodeActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    protected String randomString ( int len){
+    protected String randomString(int len) {
         secRandom = new SecureRandom();
         StringBuilder sb = new StringBuilder(len);
         for (int i = 0; i < 8; i++)
@@ -134,18 +134,18 @@ public class CodeActivity extends AppCompatActivity {
         return sb.toString();
     }
 
-    protected boolean showAlertDeleteCode(final int position){
+    protected boolean showAlertDeleteCode(final int position) {
         AlertDialog.Builder alert = new AlertDialog.Builder(CodeActivity.this);
         alert.setTitle("Delete this code?");
         alert.setMessage("Do you want to delete this code? \n It make this account cannot available");
 
-        alert.setPositiveButton("Remove", new DialogInterface.OnClickListener(){
-            public void onClick(DialogInterface dialog, int which){
+        alert.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
                 deleteCode(position);
             }
         });
 
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             //user click cancle
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -156,24 +156,21 @@ public class CodeActivity extends AppCompatActivity {
         return true;
     }
 
-    protected void deleteCode(int position){
+    protected void deleteCode(int position) {
         String[] tables = listCode.getItemAtPosition(position).toString().split(":");
         mDatabase.child("Code").orderByChild("code").equalTo(tables[1].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
                     keyDelete = child.getKey();
 //                    Log.d("User key", child.getKey());
 //                    Log.d("User ref", child.getRef().toString());
 //                    Log.d("User val", child.getValue().toString());
 //                    Log.d("--------------------", child.toString());
                     mDatabase.child("Code").child(keyDelete).removeValue();
-                    Toast.makeText(CodeActivity.this, "Deleted!! ",  Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CodeActivity.this, "Deleted!! ", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
-
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

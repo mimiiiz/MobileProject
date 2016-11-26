@@ -1,10 +1,14 @@
 package com.example.buftest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.buftest.model.Code;
 import com.example.buftest.model.Order;
@@ -42,7 +46,8 @@ public class QueueActivity extends AppCompatActivity {
                 for (DataSnapshot mSnap : dataSnapshot.getChildren()){
                     Log.d("mSnap", mSnap.toString());
                     queuesObj = mSnap.getValue(Queues.class);
-                    orderLs.add(queuesObj.getTableNo() + "\n" + queuesObj.getCode() + " ; " + queuesObj.getTimestamp());
+                    orderLs.add(queuesObj.getTableNo() + "\n" + queuesObj.getCode()+ "\n" + queuesObj.getTimestamp());
+//                    orderLs.add(queuesObj.getTableNo());
                     queuesObj.setMenuOrdered(orderArrayList);
 //                    Log.d("-----------", "--------------------------");
 //                    Log.d("menu children",mSnap.child("menus").hasChildren()+"");
@@ -68,6 +73,22 @@ public class QueueActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        lv_listQueue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String[] itemFromLV = lv_listQueue.getItemAtPosition(position).toString().split("\n");
+                Toast.makeText(QueueActivity.this, itemFromLV[0] + ", " + itemFromLV[1], Toast.LENGTH_SHORT).show();
+
+                Intent gotoOrderDetail = new Intent(QueueActivity.this, OrderDetailActivity.class);
+                gotoOrderDetail.putExtra("TableNo", itemFromLV[0]);
+                gotoOrderDetail.putExtra("Code", itemFromLV[1]);
+                gotoOrderDetail.putExtra("Timestamp", itemFromLV[2]);
+
+                startActivity(gotoOrderDetail);
 
             }
         });
