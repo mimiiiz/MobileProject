@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BufTest</string>
+    <string name="title_activity_view_code">ViewCodeActivity</string>
+    <string name="title_activity_gen_code">GenCodeActivity</string>
 </resources>

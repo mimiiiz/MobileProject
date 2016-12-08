@@ -16,7 +16,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddMenuActivity" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity
+            android:name=".ViewCodeActivity"
+            android:label="@string/title_activity_view_code"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GenCodeActivity"
+            android:label="@string/title_activity_gen_code"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".OrderDetailActivity"></activity>
     </application>
 
 </manifest>
