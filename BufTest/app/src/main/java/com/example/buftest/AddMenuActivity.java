@@ -83,28 +83,4 @@ public class AddMenuActivity extends AppCompatActivity {
         });
     }
 
-    public void testRead(View v){
-//        String obj = mDatabase.child("Menu").child(keyGen).child("menuName").toString();
-//        Toast.makeText(this, obj, Toast.LENGTH_SHORT).show();
-
-        Query mQ = mDatabase.child("Menu").limitToLast(25);
-        mQ.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot mSnap : dataSnapshot.getChildren()){
-                    Menu newObj = mSnap.getValue(Menu.class);
-                    Toast.makeText(AddMenuActivity.this, newObj.getMenuName(), Toast.LENGTH_SHORT).show();
-                    Log.d(">>>>>", newObj.getMenuName());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-
 }

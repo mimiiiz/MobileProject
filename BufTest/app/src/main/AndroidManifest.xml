@@ -15,7 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OrderActivity" />
         <activity android:name=".AddMenuActivity" />
         <activity android:name=".MenuActivity"></activity>
     </application>
