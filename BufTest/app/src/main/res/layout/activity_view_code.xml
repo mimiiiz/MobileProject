@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New coe"
-        android:id="@+id/gotoAddNewCode"/>
+        android:id="@+id/gotoAddNewCode"
+        android:onClick="gotoAddNewCode"/>
 
 </LinearLayout>

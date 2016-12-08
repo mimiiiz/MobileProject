@@ -3,15 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="table name"
-        android:id="@+id/tv_tableName"/>
+        android:id="@+id/et_tableName"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Gen code"
-        android:id="@+id/btn_genCode"/>
+        android:id="@+id/btn_genCode"
+        android:onClick="genCode"/>
 
 </LinearLayout>
