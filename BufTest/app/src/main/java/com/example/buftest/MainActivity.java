@@ -22,10 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void gotoOrder(View v){
-        Intent gotoOrder = new Intent(this, OrderActivity.class);
-        startActivity(gotoOrder);
-    }
 
     protected void gotoMenu(View v){
         Intent gotoMenu = new Intent(this, MenuActivity.class);
@@ -40,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected void gotoGenCustomer(View v){
         Toast.makeText(this, "go to gen customer", Toast.LENGTH_SHORT).show();
-//        Intent gotoGenCustomer = new Intent(this, GenCustomerActivity.class);
-//        startActivity(gotoGenCustomer);
+        Intent gotoGenCustomer = new Intent(this, ViewCodeActivity.class);
+        startActivity(gotoGenCustomer);
     }
 
 
