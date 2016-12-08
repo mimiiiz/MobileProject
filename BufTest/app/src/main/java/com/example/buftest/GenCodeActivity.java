@@ -1,5 +1,6 @@
 package com.example.buftest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -26,7 +27,7 @@ public class GenCodeActivity extends AppCompatActivity {
     protected final String alphaSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     protected final String numSet = "0123456789";
     protected SecureRandom secRandomNum, secRandomAlpha;
-    private String randomNum, tableName;
+    private String tableName;
     protected DatabaseReference mDatabase;
 
     @Override
@@ -76,7 +77,7 @@ public class GenCodeActivity extends AppCompatActivity {
             sb_num.append(numSet.charAt(secRandomNum.nextInt(numSet.length())));
 
         Log.d("GenCode, randomString" , "random num = " + sb_num.toString() + sb_alpha.toString());
-        return sb_num.toString() + sb_alpha.toString();
+        return sb_alpha.toString() + sb_num.toString();
     }
 
     public void genCode(View v) {
@@ -98,6 +99,8 @@ public class GenCodeActivity extends AppCompatActivity {
             mDatabase.child("Code").child(keyGen).setValue(newCode);
             et_tableName.setText("");
             Toast.makeText(GenCodeActivity.this, newCode.getCode(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(GenCodeActivity.this, ViewCodeActivity.class));
+            
         } catch (Exception e) {
             Toast.makeText(GenCodeActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
         }
