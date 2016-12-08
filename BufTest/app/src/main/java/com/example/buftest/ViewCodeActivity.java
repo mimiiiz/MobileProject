@@ -26,6 +26,7 @@ public class ViewCodeActivity extends AppCompatActivity {
     private ListView lv_listCode;
     private DatabaseReference mDatabase;
     private ArrayList<Code> codeLs;
+    private ArrayList<String> code_n_tableNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +42,17 @@ public class ViewCodeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 codeLs = new ArrayList<Code>();
+                code_n_tableNames = new ArrayList<String>();
+                lv_listCode = (ListView) findViewById(R.id.lv_listCode);
                 for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
                     Code codeObj = new Code();
                     codeObj = mSnap.getValue(Code.class);
                     codeLs.add(codeObj);
+                    code_n_tableNames.add(codeObj.getTableNo() + " : " + codeObj.getCode() + " , " + codeObj.getTimestamp());
                 }
-                Log.d("ViewCode, onCreate", "onDataChange: Size of arrayList " + codeLs.size());
-//                lv_listCode.setAdapter(new ArrayAdapter<String>(ViewCodeActivity.this, android.R.layout.simple_list_item_1, codeLs));
+                Log.d("ViewCode, onCreate", "onDataChange: Size of arrayList Code " + codeLs.size());
+                lv_listCode.setAdapter(new ArrayAdapter<String>(ViewCodeActivity.this, android.R.layout.simple_list_item_1, code_n_tableNames));
+
             }
 
                 @Override
