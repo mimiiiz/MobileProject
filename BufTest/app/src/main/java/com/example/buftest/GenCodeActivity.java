@@ -100,6 +100,7 @@ public class GenCodeActivity extends AppCompatActivity {
             et_tableName.setText("");
             Toast.makeText(GenCodeActivity.this, newCode.getCode(), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(GenCodeActivity.this, ViewCodeActivity.class));
+            finish();
             
         } catch (Exception e) {
             Toast.makeText(GenCodeActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
