@@ -52,7 +52,16 @@ public class OrderActivity extends AppCompatActivity {
                     orderLs.add(orderObj);
                 }
                 Log.d("Order, onCreate", "onDataChange: Size of arrayList order " + orderLs.size());
-                Log.d("Order, onCreate", "onDataChange:menu name  " + orderLs.get(0).getMenus()..get("-KYUfikpF_-2gsAoZS0i").getMenuName()); // beef
+                Log.d("Order, onCreate", "onDataChange:menu name  " + orderLs.get(0).getMenus().get("-KYUfikpF_-2gsAoZS0i").getMenuName()); // beef
+
+                for (Order order1: orderLs  ) {
+                    Map<String, Menu> map = order1.getMenus();
+                    for (Map.Entry<String, Menu> entry : map.entrySet())
+                    {
+                        Log.d("entryyyy ", entry.getKey() + "/" + entry.getValue().getMenuName());
+                    }
+                }
+
 
             }
             @Override
