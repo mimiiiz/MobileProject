@@ -1,12 +1,22 @@
 package com.example.buftest.model;
 
+import java.io.Serializable;
+
 /**
  * Created by User on 18/11/2559.
  */
 
-public class Menu {
+public class Menu implements Serializable {
     private String MenuName;
-    private Integer Max, Min;
+    private Integer Max, Min, amount;
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
 
     public String getMenuName() {
         return MenuName;

@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(gotoMenu);
     }
 
-    protected void gotoQueue(View v){
-        Toast.makeText(this, "go to queue", Toast.LENGTH_SHORT).show();
-//        Intent gotoQueue = new Intent(this, QueueActivity.class);
-//        startActivity(gotoQueue);
+    protected void gotoOrder(View v){
+        startActivity(new Intent(this, OrderActivity.class));
     }
 
     protected void gotoGenCustomer(View v){

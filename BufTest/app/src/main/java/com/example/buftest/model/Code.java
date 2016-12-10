@@ -1,12 +1,13 @@
 package com.example.buftest.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by User on 8/12/2559.
  */
 
-public class Code {
+public class Code implements Serializable {
 
     private String code, TableNo;
     private Date timeStamp;
