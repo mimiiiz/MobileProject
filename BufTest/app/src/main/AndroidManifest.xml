@@ -26,6 +26,7 @@
             android:label="@string/title_activity_gen_code"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".OrderActivity" />
+        <activity android:name=".EditMenuActivity"></activity>
     </application>
 
 </manifest>
