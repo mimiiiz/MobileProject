@@ -13,14 +13,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="15dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dialog_menuName"
         android:text=""
         android:textStyle="normal|bold"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_margin="10dp"
         android:gravity="left"
         android:layout_weight="1"/>
@@ -39,16 +40,26 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="#e1e1e1"/>
+        android:background="#e1e1e1"
+        android:layout_margin="15dp"/>
 
+    <ImageView
+        android:id="@+id/dialog_imgBtn_pickFromAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#D8D5D4"
+        android:src="@drawable/ic_collections_black_24dp"
+        android:tint="#B6B3B2"
+        android:visibility="visible"
+        android:layout_margin="15dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/dialog_edit_btn_done"
-        android:layout_margin="20dp"
+        android:layout_margin="15dp"
         android:text="done"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:textColor="#6E6E6E"/>
 
 </LinearLayout>
