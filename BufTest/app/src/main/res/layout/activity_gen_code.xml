@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Gen code"
         android:id="@+id/btn_genCode"
-        android:onClick="genCode"/>
+        android:onClick="genCode"
+        android:enabled="false"/>
 
 </LinearLayout>
