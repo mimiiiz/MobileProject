@@ -99,6 +99,7 @@ public class MenuActivity extends AppCompatActivity {
 
         et_dialog_menuName.setText(menuLs.get(position).getMenuName());
         spn_dialog_max.setAdapter(adapter);
+        spn_dialog_max.setSelection(menuLs.get(position).getMax());
 
         btn_dialog_edit_btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
