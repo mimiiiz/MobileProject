@@ -84,5 +84,9 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(gotoEditMenu);
     }
 
+    protected void gotoAddMenu(View v) {
+        Intent gotoAddMenu = new Intent(this, AddMenuActivity.class);
+        startActivity(gotoAddMenu);
+    }
 
 }

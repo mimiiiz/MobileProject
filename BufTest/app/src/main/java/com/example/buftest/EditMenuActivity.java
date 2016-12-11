@@ -140,7 +140,7 @@ public class EditMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 editedMenu = new Menu();
                 editedMenu.setMenuName(et_dialog_menuName.getText().toString());
-                editedMenu.setStatus(1);
+                editedMenu.setStatus(menuLs.get(position).getStatus());
                 editedMenu.setKey(menuLs.get(position).getKey());
                 editedMenu.setMax(Integer.parseInt(spn_dialog_max.getSelectedItem().toString()));
 
@@ -195,11 +195,6 @@ public class EditMenuActivity extends AppCompatActivity {
 
         Glide.with(getApplicationContext()).load(uriFile).fitCenter().centerCrop().into(dialog_imgBtn_pickFromAlbum);
 //        dialog_imgBtn_pickFromAlbum.setVisibility(View.VISIBLE);
-    }
-
-    protected void gotoAddMenu(View v) {
-        Intent gotoAddMenu = new Intent(this, AddMenuActivity.class);
-        startActivity(gotoAddMenu);
     }
 
     public boolean showDeleteMenuDialog(final Integer position) {
