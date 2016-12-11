@@ -2,10 +2,12 @@ package com.example.buftest;
 
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -80,6 +82,14 @@ public class ViewCodeActivity extends AppCompatActivity {
             }
         });
 
+        lv_listCode.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                showDeleteDialog(position);
+                return true;
+            }
+        });
+
         }
 
     public void gotoAddNewCode(View view) {
@@ -116,6 +126,48 @@ public class ViewCodeActivity extends AppCompatActivity {
 
     }
 
+    public boolean showDeleteDialog(final Integer position){
+        AlertDialog.Builder alert = new AlertDialog.Builder(ViewCodeActivity.this);
+        alert.setTitle("Delete this code?");
+        alert.setMessage("Do you want to delete this code? \n It make this account cannot available");
+
+        alert.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deleteCode0(position);
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            //user click cancle
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.show();
+        return true;
+    }
+
+    protected void deleteCode0(final int position) {
+        mDatabase.child("Code").orderByChild("code").equalTo(codeLs.get(position).getCode()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()) {
+                    DataSnapshot firstChild = dataSnapshot.getChildren().iterator().next();
+                                    Log.d("firstChild",firstChild.getRef() + "");
+                    firstChild.getRef().removeValue();
+                    codeLs.remove(position);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
 
 
 }
