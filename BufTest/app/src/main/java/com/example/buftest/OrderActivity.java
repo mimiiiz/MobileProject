@@ -66,15 +66,6 @@ public class OrderActivity extends AppCompatActivity {
                     Order orderObj = mSnap.getValue(Order.class);
                     orderLs.add(orderObj);
                 }
-                /*
-                for (Order order1: orderLs  ) {
-                    Map<String, Menu> map = order1.getMenus();
-                    for (Map.Entry<String, Menu> entry : map.entrySet())
-                    {
-                        Log.d("entryyyy ", entry.getKey() + "/" + entry.getValue().getMenuName());
-                    }
-                }
-                */
                 mAdapter = new OrderListAdapter(orderLs, OrderActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
             }

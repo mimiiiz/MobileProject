@@ -1,6 +1,7 @@
 package com.example.buftest.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -78,7 +79,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         holder.orderCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setTitle("Orders");
 
                 LinearLayout layout = new LinearLayout(context);
@@ -95,7 +96,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
                 alertDialog.setView(layout);
                 alertDialog.setNegativeButton("Cancel", null);
-                alertDialog.setPositiveButton("Done", null);
+                alertDialog.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //// TODO: 12/11/2016 delete selected order in db
+                    }
+                });
                 alertDialog.show();
             }
         });
