@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.example.buftest.OrderActivity;
 import com.example.buftest.R;
 import com.example.buftest.model.Menu;
 import com.example.buftest.model.Order;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +28,8 @@ import java.util.Map;
  * Created by Mark on 12/11/2016.
  */
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ViewHolder> {
+
+    protected DatabaseReference mDatabase;
 
     ArrayList<Order> orders;
     Context context;
@@ -43,7 +48,6 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            //// TODO: 12/11/2016
             sendTime = (TextView) itemView.findViewById(R.id.send_time);
             tableName = (TextView) itemView.findViewById(R.id.table_name);
             orderAmount = (TextView) itemView.findViewById(R.id.order_amount);
@@ -60,7 +64,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         String tableName = orders.get(position).getCode().getTableNo();
         holder.tableName.setText(tableName);
         final Map<String, Menu> menus = orders.get(position).getMenus();
@@ -100,6 +104,9 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //// TODO: 12/11/2016 delete selected order in db
+
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        mDatabase.child("Order").child(orders.get(position).getKey()).removeValue();
                     }
                 });
                 alertDialog.show();

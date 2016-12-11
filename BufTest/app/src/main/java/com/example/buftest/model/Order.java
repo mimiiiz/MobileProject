@@ -14,6 +14,16 @@ public class Order implements Serializable {
     private Code code;
     private Map<String, Menu> menuMap;
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
+
     public Date getTimestamp() {
         return timestamp;
     }
