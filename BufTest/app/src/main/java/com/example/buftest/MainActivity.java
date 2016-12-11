@@ -6,20 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected Button btnAddMenu, btnQueue, btnGenCus;
+    protected ImageButton btnAddMenu, btnQueue, btnGenCus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        btnAddMenu = (Button) findViewById(R.id.btn_addMenu);
-//        btnQueue = (Button) findViewById(R.id.btn_queue);
-//        btnGenCus = (Button) findViewById(R.id.btn_genCustomer);
-
     }
 
 
