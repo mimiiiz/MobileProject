@@ -12,26 +12,39 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ln_imgBrn_addPhoto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_menuName"
-            android:text="Name"
-            android:layout_weight="1"/>
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/et_menuName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/et_menuName"
-            android:hint="Name"
-            android:layout_weight="2"/>
+            android:layout_weight="2"
+            android:hint="menu name"
+            android:textSize="25dp" />
 
+        <ImageButton
+            android:id="@+id/imgBtn_pickFromAlbum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:onClick="pickImgFromAlbum"
+            android:src="@drawable/ic_collections_black_24dp"
+            android:tint="#fff" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgv_petPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#D8D5D4"
+        android:src="@drawable/ic_collections_black_24dp"
+        android:tint="#B6B3B2"
+        android:visibility="gone" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,28 +69,6 @@
 
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_marginTop="20dp">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/tv_setMin"-->
-            <!--android:text="Min"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<Spinner-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/spn_setMin"-->
-            <!--android:hint="Min"-->
-            <!--android:layout_weight="2"-->
-            <!--android:spinnerMode="dropdown"/>-->
-
-    <!--</LinearLayout>-->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
