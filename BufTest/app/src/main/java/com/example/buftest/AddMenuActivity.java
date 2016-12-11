@@ -108,6 +108,7 @@ public class AddMenuActivity extends AppCompatActivity {
                 menuObj.setKey(keyGen);
                 menuObj.setMenuName(et_MenuName.getText().toString());
                 menuObj.setMax(Integer.parseInt(spnMax.getSelectedItem().toString()));
+                menuObj.setStatus(1);
 
                 mDatabase.child("Menu").child(keyGen).setValue(menuObj);
                 Toast.makeText(AddMenuActivity.this, "add successful !", Toast.LENGTH_SHORT).show();
