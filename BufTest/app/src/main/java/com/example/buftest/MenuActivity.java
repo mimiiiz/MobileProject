@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
 import com.darsh.multipleimageselect.helpers.Constants;
 import com.darsh.multipleimageselect.models.Image;
+import com.example.buftest.adapter.MenuCustomList;
 import com.example.buftest.model.Code;
 import com.example.buftest.model.Menu;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,7 +62,6 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
         /** Get Database Ref **/
         mDatabase = FirebaseDatabase.getInstance().getReference();
         storage = FirebaseStorage.getInstance();
@@ -73,26 +73,25 @@ public class MenuActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Query mQ = mDatabase.child("Menu");
         mQ.addValueEventListener(new ValueEventListener() {
-                                     @Override
-                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                         menuLs = new ArrayList<Menu>();
-                                         menuNames = new ArrayList<String>();
-                                         for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
-                                             Menu menuObj = new Menu();
-                                             menuObj = mSnap.getValue(Menu.class);
-                                             menuLs.add(menuObj);
-                                             menuNames.add(menuObj.getMenuName());
-                                         }
-                                         Log.d("Menu, onCreate", "onDataChange: Size of arrayList Menu " + menuLs.size());
+             @Override
+             public void onDataChange(DataSnapshot dataSnapshot) {
+                 menuLs = new ArrayList();
+                 menuNames = new ArrayList();
+                 for (DataSnapshot mSnap : dataSnapshot.getChildren()) {
+                     Menu menuObj = mSnap.getValue(Menu.class);
+                     menuLs.add(menuObj);
+                     menuNames.add(menuObj.getMenuName());
+                 }
+                 MenuCustomList adapter = new MenuCustomList(MenuActivity.this,menuLs);
+                 lv_listMenu.setAdapter(adapter);
+//                 lv_listMenu.setAdapter(new ArrayAdapter<String>(MenuActivity.this, android.R.layout.simple_list_item_1, menuNames));
+             }
 
-                                         lv_listMenu.setAdapter(new ArrayAdapter<String>(MenuActivity.this, android.R.layout.simple_list_item_1, menuNames));
-                                     }
+             @Override
+             public void onCancelled(DatabaseError databaseError) {
 
-                                     @Override
-                                     public void onCancelled(DatabaseError databaseError) {
-
-                                     }
-                                 }
+             }
+         }
 
         );
 
@@ -181,7 +180,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivityForResult(intent, Constants.REQUEST_CODE);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -196,7 +194,7 @@ public class MenuActivity extends AppCompatActivity {
         for (int i = 0; i < images.size(); i++) {
             Log.i("pathhhhhhhhhhh", images.get(i).path);
             uriFile = Uri.fromFile(new File(images.get(i).path));
-            StorageReference imgRef = storageRef.child("Menu/" + menuKey  + "/" + i);
+            StorageReference imgRef = storageRef.child("Menu/" + menuKey + "/" + i);
             UploadTask uploadTask = imgRef.putFile(uriFile);
             // Register observers to listen for when the download is done or if it fails
             uploadTask.addOnFailureListener(new OnFailureListener() {
