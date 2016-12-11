@@ -105,6 +105,7 @@ public class AddMenuActivity extends AppCompatActivity {
                 et_MenuName = (EditText) findViewById(R.id.et_menuName);
                 spnMax = (Spinner) findViewById(R.id.spn_setMax);
                 Menu menuObj = new Menu();
+                menuObj.setKey(keyGen);
                 menuObj.setMenuName(et_MenuName.getText().toString());
                 menuObj.setMax(Integer.parseInt(spnMax.getSelectedItem().toString()));
 

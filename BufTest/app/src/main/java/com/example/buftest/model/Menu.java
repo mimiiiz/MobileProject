@@ -8,6 +8,16 @@ import java.io.Serializable;
 
 public class Menu implements Serializable {
     private String MenuName;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    private String key;
     private Integer Max, Min, amount;
 
     public Integer getAmount() {
