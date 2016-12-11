@@ -60,9 +60,6 @@ public class GenCodeActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
     protected String randomString(int len) {

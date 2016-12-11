@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void gotoGenCustomer(View v){
-        Toast.makeText(this, "go to gen customer", Toast.LENGTH_SHORT).show();
         Intent gotoGenCustomer = new Intent(this, ViewCodeActivity.class);
         startActivity(gotoGenCustomer);
     }
