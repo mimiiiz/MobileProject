@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.darsh.multipleimageselect.activities.AlbumSelectActivity;
@@ -57,6 +58,8 @@ public class EditMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_menu);
+        TextView title = (TextView) findViewById(R.id.page_title);
+        title.setText("Edit menu");
 
         Intent getIntent = getIntent();
         menuLs = (ArrayList<Menu>) getIntent.getSerializableExtra("menuLs");

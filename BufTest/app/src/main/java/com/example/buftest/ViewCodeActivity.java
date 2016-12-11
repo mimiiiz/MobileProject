@@ -43,6 +43,9 @@ public class ViewCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_code);
 
+        TextView title = (TextView) findViewById(R.id.page_title);
+        title.setText("Code generator");
+
         lv_listCode = (ListView) findViewById(R.id.lv_listCode);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buftest.adapter.OrderListAdapter;
@@ -41,6 +42,8 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        TextView title = (TextView) findViewById(R.id.page_title);
+        title.setText("Order");
     }
 
     @Override

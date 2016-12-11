@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/dialog_table_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="tablename"
-        android:textStyle="normal|bold"
-        android:textSize="30sp"
-        android:layout_margin="10dp"/>
+        android:textStyle="normal|bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="#e1e1e1"/>
+        android:background="#e1e1e1" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/dialog_code"
-        android:text="codecode"
-        android:textStyle="normal|bold"
-        android:textSize="50sp"
-        android:layout_margin="10dp"
-        android:gravity="center_horizontal"/>
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dialog_timestamp"
-        android:text="timestamp"
-        android:textStyle="normal"
-        android:textSize="20sp"
         android:layout_margin="10dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:text="codecode"
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/dialog_timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:text="timestamp"
+        android:textStyle="normal" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="#e1e1e1"/>
+        android:background="#e1e1e1" />
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/dialog_btn_ok"
-            android:layout_margin="20dp"
-            android:text="ok"
-            android:textSize="25dp"
-            android:textColor="#6E6E6E"/>
-
+    <Button
+        android:id="@+id/dialog_btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="ok"
+        android:textColor="#6E6E6E"
+        style="@style/Widget.AppCompat.Button.Colored" />
 
 
 </LinearLayout>

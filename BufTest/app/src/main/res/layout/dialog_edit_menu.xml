@@ -21,7 +21,6 @@
         android:id="@+id/dialog_menuName"
         android:text=""
         android:textStyle="normal|bold"
-        android:textSize="20sp"
         android:layout_margin="10dp"
         android:gravity="left"
         android:layout_weight="1"/>
@@ -55,11 +54,12 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:id="@+id/dialog_edit_btn_done"
         android:layout_margin="15dp"
         android:text="done"
-        android:textSize="15dp"
-        android:textColor="#6E6E6E"/>
+        android:textColor="#6E6E6E"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/colorAccent" />
 
 </LinearLayout>

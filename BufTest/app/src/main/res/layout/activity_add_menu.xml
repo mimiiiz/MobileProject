@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="menu name"
-            android:textSize="25dp" />
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/imgBtn_pickFromAlbum"
@@ -75,7 +75,9 @@
         android:id="@+id/btn_add"
         android:text="ADD"
         android:enabled="false"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/colorAccent" />
 
 
 

@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
     android:focusableInTouchMode="true">
-
-    <ListView
+    <include layout="@layout/custom_toolbar"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_listCode">
+        android:text="Tap to edit, Long press to remove"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:layout_margin="16dp"/>
 
-    </ListView>
-    <Button
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New coe"
-        android:id="@+id/gotoAddNewCode"
-        android:onClick="gotoAddNewCode"/>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_listCode"
+            android:paddingLeft="16dp"
+            android:paddingBottom="70dp"
+            android:fadeScrollbars="true"
+            android:clipToPadding="false"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_margin="16dp"
+            android:id="@+id/gotoAddNewCode"
+            android:onClick="gotoAddNewCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:clickable="true"
+            android:tint="@android:color/background_light"
+            app:fabSize="normal"
+            android:src="@drawable/add_code_icon"/>
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>
