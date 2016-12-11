@@ -149,6 +149,7 @@ public class EditMenuActivity extends AppCompatActivity {
 
                 updateMenu(position);
                 menuDialog.dismiss();
+                finish();
             }
         });
 
@@ -208,6 +209,7 @@ public class EditMenuActivity extends AppCompatActivity {
         alert.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 deleteMenu(position);
+                finish();
             }
         });
 
