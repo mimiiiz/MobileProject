@@ -41,7 +41,8 @@
             android:layout_weight="1"
             app:cardElevation="8dp"
             app:cardCornerRadius="16dp"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:onClick="gotoQueue">
             <ImageButton
                 android:layout_margin="16dp"
                 android:layout_gravity="center_vertical"
@@ -61,7 +62,8 @@
             android:layout_weight="1"
             app:cardElevation="8dp"
             app:cardCornerRadius="16dp"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:onClick="gotoMenu">
             <ImageButton
                 android:layout_margin="16dp"
                 android:layout_gravity="center_vertical"
@@ -76,7 +78,8 @@
             android:layout_weight="1"
             app:cardElevation="8dp"
             app:cardCornerRadius="16dp"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:onClick="gotoGenCustomer">
             <ImageButton
                 android:layout_margin="16dp"
                 android:layout_gravity="center_vertical"
