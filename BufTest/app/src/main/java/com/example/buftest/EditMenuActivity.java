@@ -232,7 +232,7 @@ public class EditMenuActivity extends AppCompatActivity {
                     DataSnapshot firstChild = dataSnapshot.getChildren().iterator().next();
                     Log.d("firstChild", firstChild.getRef() + "");
                     firstChild.getRef().removeValue();
-                    menuLs.remove(position);
+//                    menuLs.remove(position);
                 }
             }
 
